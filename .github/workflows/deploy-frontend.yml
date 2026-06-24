@@ -10,17 +10,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Deploy to EC2
-        uses: appleboy/ssh-action@v0.1.5
+        uses: appleboy/ssh-action@v1.2.0
         with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
+          host: ${{ secrets.FRONTEND_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
           script: |
             cd /home/ubuntu/LendoGo-frontend
             git fetch --all
             git reset --hard origin/main
-            # WRITE THE CORRECT ENV FILE DURING DEPLOYMENT
+            # Write correct env variables
             echo "VITE_API_BASE_URL=${{ secrets.VITE_API_URL }}" > .env
             echo "VITE_WS_BASE_URL=${{ secrets.VITE_API_URL }}" | sed 's/http/ws/' >> .env
-            docker compose down
-            docker compose up -d --build
+            npm install
+            npm run build
+            sudo systemctl reload nginx
