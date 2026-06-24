@@ -48,7 +48,7 @@ const JobApplyPage = () => {
   React.useEffect(() => {
     const fetchJob = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/careers/openings/${jobId}`);
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/careers/openings/${jobId}`);
         const resData = await response.json();
         if (resData && resData.data) {
           setJob(resData.data);
@@ -146,7 +146,7 @@ const JobApplyPage = () => {
       const submitBtn = document.getElementById('submit-application-btn');
       if (submitBtn) submitBtn.innerText = 'Submitting...';
 
-      const response = await fetch(`http://localhost:8080/api/careers/openings/${jobId}/apply`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/careers/openings/${jobId}/apply`, {
         method: 'POST',
         body: formData
       });

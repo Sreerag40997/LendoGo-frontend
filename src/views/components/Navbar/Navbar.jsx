@@ -10,13 +10,13 @@ import { apiClient } from '../../../utils/apiClient';
 
 const getCleanDpUrl = (imgUrl) => {
   if (!imgUrl) return 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png';
-  if (imgUrl.startsWith('http://localhost:8080http')) {
-    return imgUrl.replace('http://localhost:8080', '');
+  if (imgUrl.startsWith(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}http`)) {
+    return imgUrl.replace(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}`, '');
   }
   if (imgUrl.startsWith('http://') || imgUrl.startsWith('https://')) {
     return imgUrl;
   }
-  return `http://localhost:8080${imgUrl}`;
+  return `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}${imgUrl}`;
 };
 
 // Global sliding profile sidebar React Portal component (Nested Sub-Views System)

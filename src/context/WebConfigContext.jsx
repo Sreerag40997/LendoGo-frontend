@@ -24,7 +24,7 @@ export const WebConfigProvider = ({ children }) => {
     fetchConfig();
     
     // Connect to the public system broadcast WebSocket
-    const ws = new WebSocket('ws://localhost:8080/api/admin/ws');
+    const ws = new WebSocket(`${import.meta.env.VITE_WS_BASE_URL || 'ws://localhost:8080'}/api/admin/ws`);
     
     ws.onopen = () => console.log("System WebConfig Syncer connected!");
     

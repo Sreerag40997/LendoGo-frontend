@@ -332,7 +332,7 @@ export const useAdminController = () => {
     
     if (isAdmin || p['audit_read'] || p['user_read']) {
       // Connect to the new dedicated Admin WebSocket Hub!
-      const wsUrl = `ws://localhost:8080/api/admin/ws`;
+      const wsUrl = `${import.meta.env.VITE_WS_BASE_URL || 'ws://localhost:8080'}/api/admin/ws`;
       const ws = new WebSocket(wsUrl);
       ws.onmessage = (event) => {
         try {
@@ -515,7 +515,7 @@ export const useAdminController = () => {
         state: app.state,
         zip: app.postal_code,
         cvName: app.resume_path ? app.resume_path.split('/').pop() : 'resume.pdf',
-        cvUrl: app.resume_path ? (app.resume_path.startsWith('http') ? app.resume_path : `http://localhost:8080/${app.resume_path}`) : '',
+        cvUrl: app.resume_path ? (app.resume_path.startsWith('http') ? app.resume_path : `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/${app.resume_path}`) : '',
         role: app.CareerOpening ? app.CareerOpening.title : 'Unknown Role',
         dept: app.CareerOpening ? app.CareerOpening.department : 'Unknown Dept',
         applied: app.created_at ? new Date(app.created_at).toISOString().split('T')[0] : 'N/A',

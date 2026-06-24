@@ -68,7 +68,7 @@ const ConsultationModal = ({ isOpen, onClose }) => {
     };
 
     try {
-      const response = await fetch("http://localhost:8080/api/consultation/request", {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/consultation/request`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -90,7 +90,7 @@ const ConsultationModal = ({ isOpen, onClose }) => {
       // Fallback: If local backend is down during testing, show a helpful validation error
       setErrors((prev) => ({
         ...prev,
-        submit: "Failed to connect to the backend server at localhost:8080."
+        submit: "Failed to connect to the backend server."
       }));
     } finally {
       setLoading(false);

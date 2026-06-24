@@ -131,7 +131,7 @@ const JobListingsPage = () => {
   React.useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/careers/openings?status=Open');
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/careers/openings?status=Open`);
         const resData = await response.json();
         const data = resData?.data || resData || [];
 
