@@ -1,6 +1,6 @@
 // src/utils/apiClient.js
 
-const BASE_URL = 'http://localhost:8080/api';
+const BASE_URL = `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api`;
 
 export const apiClient = async (endpoint, options = {}) => {
   // 1. Check if the body is a FormData object (used for file uploads)

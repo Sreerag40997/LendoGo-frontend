@@ -85,7 +85,7 @@ const SignInForm = ({ onSignIn, loading, error }) => {
     setForgotError('');
 
     try {
-      const response = await fetch('http://localhost:8080/api/auth/forgot-password/send-otp', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/auth/forgot-password/send-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: forgotEmail }),
@@ -137,7 +137,7 @@ const SignInForm = ({ onSignIn, loading, error }) => {
     setForgotLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8080/api/auth/forgot-password/reset', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/auth/forgot-password/reset`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

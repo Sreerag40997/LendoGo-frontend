@@ -206,7 +206,7 @@ const KYCVerificationsTab = () => {
         return dbValue;
       }
       // If it is a relative storage path or file reference, prefix it with your backend host
-      const BACKEND_BASE = 'http://localhost:8080';
+      const BACKEND_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
       if (dbValue.startsWith('/')) {
         return `${BACKEND_BASE}${dbValue}`;
       }

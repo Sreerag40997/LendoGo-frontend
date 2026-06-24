@@ -80,7 +80,7 @@ const SetPasswordForm = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8080/api/auth/set-password', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'}/api/auth/set-password`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         // 👇 FIX: Added confirmPassword to the payload

@@ -29,7 +29,7 @@ const ChatWidget = () => {
       setMessages([]);
 
       // Open a WebSocket connection
-      const wsUrl = `ws://localhost:8080/api/ws/chat?user_id=${user.id}&role=user&name=${encodeURIComponent(user.name || user.full_name || '')}&email=${encodeURIComponent(user.email || '')}`;
+      const wsUrl = `${import.meta.env.VITE_WS_BASE_URL || 'ws://localhost:8080'}/api/ws/chat?user_id=${user.id}&role=user&name=${encodeURIComponent(user.name || user.full_name || '')}&email=${encodeURIComponent(user.email || '')}`;
       const ws = new WebSocket(wsUrl);
       wsRef.current = ws;
 

@@ -51,7 +51,7 @@ const ChatSupportPanel = ({ chats, setChats, users }) => {
 
   // Connect to Admin Chat WebSocket on mount
   useEffect(() => {
-    const wsUrl = `ws://localhost:8080/api/ws/chat?user_id=0&role=admin&name=${encodeURIComponent(adminName)}&email=${encodeURIComponent(adminEmail)}`;
+    const wsUrl = `${import.meta.env.VITE_WS_BASE_URL || 'ws://localhost:8080'}/api/ws/chat?user_id=0&role=admin&name=${encodeURIComponent(adminName)}&email=${encodeURIComponent(adminEmail)}`;
     const ws = new WebSocket(wsUrl);
     wsRef.current = ws;
 

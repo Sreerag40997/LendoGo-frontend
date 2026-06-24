@@ -116,7 +116,7 @@ export const AuthProvider = ({ children }) => {
       fetchGlobalPerms();
 
       // Realtime System Broadcast WebSockets
-      const wsUrl = `ws://localhost:8080/api/ws/chat?user_id=${user.id}&role=${encodeURIComponent(user.role)}&name=SystemSync&email=system`;
+      const wsUrl = `${import.meta.env.VITE_WS_BASE_URL || 'ws://localhost:8080'}/api/ws/chat?user_id=${user.id}&role=${encodeURIComponent(user.role)}&name=SystemSync&email=system`;
       const ws = new WebSocket(wsUrl);
       ws.onmessage = (event) => {
          try {

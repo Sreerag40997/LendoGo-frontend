@@ -159,7 +159,7 @@ const RolePermissionsTab = () => {
         });
 
         // Broadcast to all connected clients via Chat Websocket Hub
-        const wsUrl = `ws://localhost:8080/api/ws/chat?user_id=0&role=admin&name=System&email=system`;
+        const wsUrl = `${import.meta.env.VITE_WS_BASE_URL || 'ws://localhost:8080'}/api/ws/chat?user_id=0&role=admin&name=System&email=system`;
         const ws = new WebSocket(wsUrl);
         ws.onopen = () => {
           ws.send(JSON.stringify({
